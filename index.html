@@ -1615,12 +1615,26 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
-        if (targetId === '#' || targetId.length < 2) return;
+        // Ignora links vazios ou muito curtos
+        if (targetId === '#' || targetId.length < 2) return; 
+        
         const target = document.querySelector(targetId);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Atualiza URL sem causar jump
+          
+          // 1. Pega a altura atual do menu fixo
+          const navHeight = document.querySelector('.nav').offsetHeight;
+          
+          // 2. Calcula a posição do alvo descontando a altura do menu + 10px de respiro
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 10;
+          
+          // 3. Rola a página suavemente para a posição exata
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Atualiza a URL sem causar "jump" (pulo) na tela
           history.replaceState(null, '', targetId);
         }
       });

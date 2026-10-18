@@ -15,7 +15,31 @@
   <meta property="og:title" content="Carlos Vieira — Engenheiro de Computação" />
   <meta property="og:description" content="Software, automação industrial e IoT para empresas que querem usar os dados que as máquinas já geram. Do sensor ao sistema." />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://carlosvieira.eng.br/" />
+  <meta property="og:image" content="https://carlosvieira.eng.br/assets/cold-monitor-dashboard.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="783" />
+  <meta property="og:image:alt" content="Dashboard do cold-monitor mostrando a temperatura de freezers e geladeiras ao vivo" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0D1B2A" />
+  <link rel="canonical" href="https://carlosvieira.eng.br/" />
+
+  <!-- Dados estruturados para buscadores -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Carlos Elian Lopes Vieira",
+    "alternateName": "Carlos Vieira",
+    "jobTitle": "Engenheiro de Computação",
+    "url": "https://carlosvieira.eng.br/",
+    "email": "mailto:contato@carlosvieira.eng.br",
+    "address": { "@type": "PostalAddress", "addressLocality": "Joaçaba", "addressRegion": "SC", "addressCountry": "BR" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Unoesc" },
+    "knowsAbout": ["Java", "Spring Boot", "IoT", "IIoT", "Sistemas embarcados", "Automação industrial", "Monitoramento da cadeia do frio"],
+    "sameAs": ["https://github.com/carloslpv", "https://www.linkedin.com/in/carloslpv/"]
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -684,8 +708,110 @@
       text-align: center;
     }
 
+    .inline-link {
+      color: var(--amber-hover);
+      font-weight: 600;
+      border-bottom: 1px solid currentColor;
+    }
+
+    /* Projeto em destaque (ocupa as duas colunas) */
+    .project-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+      border-color: var(--navy-700);
+      box-shadow: var(--shadow);
+    }
+    .project-featured__media {
+      position: relative;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+    .project-featured__media video {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: left top; /* no desktop, mostra o canto com os indicadores maior e legível */
+      display: block;
+    }
+    .project-featured__live {
+      position: absolute;
+      bottom: 14px; left: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(13, 27, 42, 0.85);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber);
+    }
+    .project-featured__live .dot {
+      width: 7px; height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .project-featured__body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-featured .project-card__title { font-size: 22px; }
+    .project-featured__list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--slate-700);
+      line-height: 1.55;
+    }
+    .project-featured__list li {
+      position: relative;
+      padding-left: 20px;
+    }
+    .project-featured__list li::before {
+      content: '';
+      position: absolute;
+      left: 2px; top: 8px;
+      width: 7px; height: 7px;
+      border-radius: 2px;
+      background: var(--amber);
+    }
+    .project-featured__repos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .project-featured__repos a { color: var(--slate-500); transition: color var(--transition); }
+    .project-featured__repos a:hover { color: var(--amber-hover); }
+    .project-featured__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 24px;
+      margin-top: auto;
+    }
+    .project-featured__actions .btn { padding: 12px 22px; }
+
+    @media (max-width: 960px) {
+      .project-featured { grid-template-columns: 1fr; }
+      .project-featured__media video { height: auto; aspect-ratio: 1200 / 783; object-fit: contain; }
+    }
+
     @media (max-width: 760px) {
       .portfolio__grid { grid-template-columns: 1fr; }
+      .project-featured__body { padding: 28px 24px; }
     }
 
     /* ---------- WHY ME ---------- */
@@ -1044,7 +1170,7 @@
 
         <div class="hero__photo">
           <div class="hero__photo-frame">
-            <img src="assets/carlos-vieira.jpg" alt="Carlos Vieira — Engenheiro de Computação" loading="eager" />
+            <img src="assets/carlos-vieira.jpg" alt="Carlos Vieira — Engenheiro de Computação" width="840" height="1259" loading="eager" fetchpriority="high" />
             <div class="hero__photo-badge">Joaçaba · SC</div>
           </div>
         </div>
@@ -1099,6 +1225,10 @@
             <span class="tech-badge">Hibernate / JPA</span>
             <span class="tech-badge">RabbitMQ</span>
             <span class="tech-badge">Jenkins / CI-CD</span>
+            <span class="tech-badge">GitHub Actions</span>
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">Prometheus / Grafana</span>
             <span class="tech-badge">STM32</span>
             <span class="tech-badge">PIC16</span>
             <span class="tech-badge">RTOS</span>
@@ -1134,7 +1264,7 @@
               <span class="credential__icon">📄</span>
               <div class="credential__text">
                 <strong>Publicação científica</strong>
-                Monitoramento de IIoT em nuvem
+                Sistema de monitoramento em nuvem de CLP para IIoT · Congresso de Iniciação Científica do INATEL, 2025
               </div>
             </li>
             <li class="credential">
@@ -1195,10 +1325,10 @@
           <div class="service-card__icon">🏭</div>
           <h3 class="service-card__title">Monitoramento e integração industrial</h3>
           <p class="service-card__desc">
-            Ligo máquinas, sensores e CLPs a um sistema que a sua equipe consegue usar: coleta dos dados, painel em tempo real e integração com o ERP ou com o que você já tem. Trabalho com MQTT, Profinet, LoRaWAN e microcontroladores como ESP32 e STM32.
+            Ligo máquinas, sensores e CLPs a um sistema que a sua equipe consegue usar: coleta dos dados, painel em tempo real e integração com o ERP ou com o que você já tem. Trabalho com MQTT, Profinet, LoRaWAN e microcontroladores como ESP32 e STM32. Um exemplo é o <a href="#cold-monitor" class="inline-link">cold-monitor</a>, que acompanha a temperatura de geladeiras e câmaras frias e avisa quando algo sai da faixa.
           </p>
           <div class="service-card__ideal">
-            <strong>Ideal para:</strong> indústrias e empresas com equipamentos gerando dados, mas que ainda controlam a produção no papel ou em planilha.
+            <strong>Ideal para:</strong> indústrias e empresas com equipamentos gerando dados, mas que ainda controlam a produção no papel ou em planilha. Também farmácias, laboratórios e frigoríficos que precisam provar que a temperatura ficou na faixa.
           </div>
           <a href="#contato" class="btn--link" data-assunto="IoT e automação industrial">Quero conversar sobre isso</a>
         </article>
@@ -1261,6 +1391,51 @@
       </div>
 
       <div class="portfolio__grid">
+        <article class="project-card project-featured reveal" id="cold-monitor">
+          <div class="project-featured__media">
+            <video id="coldMonitorVideo" muted loop playsinline preload="none" poster="assets/cold-monitor-dashboard.jpg" width="1200" height="783" aria-label="Dashboard do cold-monitor ao vivo: as leituras chegam a cada poucos segundos e um painel fica vermelho quando a temperatura sai da faixa">
+              <source src="assets/cold-monitor-live.webm" type="video/webm" />
+              <source src="assets/cold-monitor-live.mp4" type="video/mp4" />
+            </video>
+            <span class="project-featured__live"><span class="dot"></span>Dashboard ao vivo</span>
+          </div>
+          <div class="project-featured__body">
+            <div class="project-card__header">
+              <span class="project-card__tag">IoT · Código aberto</span>
+              <div class="project-card__icon">❄️</div>
+            </div>
+            <h3 class="project-card__title">cold-monitor: temperatura da cadeia do frio</h3>
+            <p class="project-card__desc">
+              Monitora geladeiras, freezers e câmaras frias que guardam vacinas, sangue e alimentos. Os sensores mandam leituras para uma API, o dashboard mostra cada equipamento ao vivo e o Telegram avisa quando a temperatura sai da faixa, quando um sensor para de enviar e quando tudo volta ao normal.
+            </p>
+            <ul class="project-featured__list">
+              <li>Alerta por excursão, não por leitura: uma mensagem quando o problema começa e outra quando acaba.</li>
+              <li>Vigia de sensores em silêncio, porque sensor sem energia não manda nada e isso parece "está tudo bem".</li>
+              <li>Roda inteiro com Docker Compose, com métricas e logs no Grafana.</li>
+            </ul>
+            <div class="project-card__stack">
+              <span class="stack-chip">Java 25</span>
+              <span class="stack-chip">Spring Boot 4</span>
+              <span class="stack-chip">PostgreSQL</span>
+              <span class="stack-chip">SSE</span>
+              <span class="stack-chip">React</span>
+              <span class="stack-chip">TypeScript</span>
+              <span class="stack-chip">Docker</span>
+              <span class="stack-chip">Grafana</span>
+            </div>
+            <div class="project-featured__repos" aria-label="Repositórios do projeto">
+              <a href="https://github.com/carloslpv/cold-monitor-backend" target="_blank" rel="noopener">backend</a>
+              <a href="https://github.com/carloslpv/cold-monitor-dashboard" target="_blank" rel="noopener">dashboard</a>
+              <a href="https://github.com/carloslpv/cold-monitor-simulator" target="_blank" rel="noopener">simulator</a>
+              <a href="https://github.com/carloslpv/cold-monitor-infra" target="_blank" rel="noopener">infra</a>
+            </div>
+            <div class="project-featured__actions">
+              <a href="https://github.com/carloslpv/cold-monitor-infra" target="_blank" rel="noopener" class="btn btn--dark">Ver no GitHub</a>
+              <a href="#contato" class="project-card__link" data-assunto="Monitoramento de temperatura">Quero isso na minha empresa</a>
+            </div>
+          </div>
+        </article>
+
         <article class="project-card reveal">
           <div class="project-card__header">
             <span class="project-card__tag">SaaS</span>
@@ -1397,6 +1572,7 @@
             <select id="assunto" name="assunto">
               <option value="">Selecione um tipo</option>
               <option value="IoT e automação industrial">IoT e automação industrial</option>
+              <option value="Monitoramento de temperatura">Monitoramento de temperatura</option>
               <option value="Consultoria">Consultoria</option>
               <option value="Desenvolvimento">Desenvolvimento</option>
               <option value="Mentoria">Mentoria</option>
@@ -1692,6 +1868,20 @@
         submitBtn.disabled = false;
       }
     });
+
+    /* ===================================================================
+       6b. VÍDEO DO COLD-MONITOR — só toca quando aparece na tela
+       =================================================================== */
+    const cmVideo = document.getElementById('coldMonitorVideo');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (cmVideo && !reduceMotion && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) cmVideo.play().catch(() => {});
+          else cmVideo.pause();
+        });
+      }, { threshold: 0.25 }).observe(cmVideo);
+    }
 
     /* Esconde o card do WhatsApp enquanto o número ainda for o placeholder */
     const waChannel = document.getElementById('whatsappChannel');

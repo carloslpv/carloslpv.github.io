@@ -730,7 +730,8 @@
       background: #0b0b0b;
       overflow: hidden;
     }
-    .project-featured__media video {
+    .project-featured__media video,
+    .project-featured__media img {
       width: 100%;
       height: 100%;
       min-height: 100%;
@@ -806,7 +807,8 @@
 
     @media (max-width: 960px) {
       .project-featured { grid-template-columns: 1fr; }
-      .project-featured__media video { height: auto; aspect-ratio: 1200 / 783; object-fit: contain; }
+      .project-featured__media video,
+      .project-featured__media img { height: auto; aspect-ratio: 1200 / 783; object-fit: contain; }
     }
 
     @media (max-width: 760px) {
@@ -1264,7 +1266,7 @@
               <span class="credential__icon">📄</span>
               <div class="credential__text">
                 <strong>Publicação científica</strong>
-                Sistema de monitoramento em nuvem de CLP para IIoT · Congresso de Iniciação Científica do INATEL, 2025
+                Sistema de monitoramento em nuvem de CLP para IIoT · Congresso de Iniciação Científica do INATEL, 2025 · <a href="#machine-telemetry" class="inline-link">virou o machine-telemetry</a>
               </div>
             </li>
             <li class="credential">
@@ -1325,7 +1327,7 @@
           <div class="service-card__icon">🏭</div>
           <h3 class="service-card__title">Monitoramento e integração industrial</h3>
           <p class="service-card__desc">
-            Ligo máquinas, sensores e CLPs a um sistema que a sua equipe consegue usar: coleta dos dados, painel em tempo real e integração com o ERP ou com o que você já tem. Trabalho com MQTT, Profinet, LoRaWAN e microcontroladores como ESP32 e STM32. Um exemplo é o <a href="#cold-monitor" class="inline-link">cold-monitor</a>, que acompanha a temperatura de geladeiras e câmaras frias e avisa quando algo sai da faixa.
+            Ligo máquinas, sensores e CLPs a um sistema que a sua equipe consegue usar: coleta dos dados, painel em tempo real e integração com o ERP ou com o que você já tem. Trabalho com OPC UA, MQTT, Profinet, LoRaWAN e microcontroladores como ESP32 e STM32. Dois exemplos: o <a href="#machine-telemetry" class="inline-link">machine-telemetry</a>, que lê o CLP da máquina e mostra paradas e OEE, e o <a href="#cold-monitor" class="inline-link">cold-monitor</a>, que acompanha a temperatura de geladeiras e câmaras frias e avisa quando algo sai da faixa.
           </p>
           <div class="service-card__ideal">
             <strong>Ideal para:</strong> indústrias e empresas com equipamentos gerando dados, mas que ainda controlam a produção no papel ou em planilha. Também farmácias, laboratórios e frigoríficos que precisam provar que a temperatura ficou na faixa.
@@ -1432,6 +1434,48 @@
             <div class="project-featured__actions">
               <a href="https://github.com/carloslpv/cold-monitor-infra" target="_blank" rel="noopener" class="btn btn--dark">Ver no GitHub</a>
               <a href="#contato" class="project-card__link" data-assunto="Monitoramento de temperatura">Quero isso na minha empresa</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card project-featured reveal" id="machine-telemetry">
+          <div class="project-featured__media">
+            <img src="assets/machine-telemetry-dashboard.jpg" width="1200" height="783" loading="lazy" decoding="async" alt="Painel do machine-telemetry no Grafana: estado da máquina, OEE com disponibilidade, performance e qualidade, linha do tempo de estados, produção por hora e paradas por causa" />
+            <span class="project-featured__live">Painel no Grafana</span>
+          </div>
+          <div class="project-featured__body">
+            <div class="project-card__header">
+              <span class="project-card__tag">Indústria · Código aberto</span>
+              <div class="project-card__icon">🏭</div>
+            </div>
+            <h3 class="project-card__title">machine-telemetry: paradas e OEE direto do CLP</h3>
+            <p class="project-card__desc">
+              Lê o CLP que a máquina já tem, por OPC UA ou S7, e mostra o que ela está fazendo, quanto tempo parou e por quê, quanto produziu e qual o OEE. É a continuação do meu TCC, publicado no INATEL, e foi pensado para indústrias e agroindústrias que ainda controlam a produção no papel.
+            </p>
+            <ul class="project-featured__list">
+              <li>Não mexe na lógica da máquina: o CLP só copia para um bloco de dados sinais que já existem.</li>
+              <li>Gateway de borda em Raspberry Pi ou TV Box que guarda tudo em disco quando a internet cai e envia depois, na ordem.</li>
+              <li>Máquina longe da rede, como silo ou moega, envia por LoRaWAN.</li>
+            </ul>
+            <div class="project-card__stack">
+              <span class="stack-chip">Java 25</span>
+              <span class="stack-chip">Spring Boot 4</span>
+              <span class="stack-chip">OPC UA</span>
+              <span class="stack-chip">S7</span>
+              <span class="stack-chip">MQTT</span>
+              <span class="stack-chip">LoRaWAN</span>
+              <span class="stack-chip">PostgreSQL</span>
+              <span class="stack-chip">Grafana</span>
+            </div>
+            <div class="project-featured__repos" aria-label="Partes do projeto">
+              <a href="https://github.com/carloslpv/machine-telemetry/tree/main/gateway" target="_blank" rel="noopener">gateway</a>
+              <a href="https://github.com/carloslpv/machine-telemetry/tree/main/platform" target="_blank" rel="noopener">platform</a>
+              <a href="https://github.com/carloslpv/machine-telemetry/tree/main/plc-sim" target="_blank" rel="noopener">plc-sim</a>
+              <a href="https://github.com/carloslpv/machine-telemetry/blob/main/docs/comissionamento.md" target="_blank" rel="noopener">comissionamento</a>
+            </div>
+            <div class="project-featured__actions">
+              <a href="https://github.com/carloslpv/machine-telemetry" target="_blank" rel="noopener" class="btn btn--dark">Ver no GitHub</a>
+              <a href="#contato" class="project-card__link" data-assunto="Telemetria de máquinas">Quero isso na minha empresa</a>
             </div>
           </div>
         </article>
@@ -1572,6 +1616,7 @@
             <select id="assunto" name="assunto">
               <option value="">Selecione um tipo</option>
               <option value="IoT e automação industrial">IoT e automação industrial</option>
+              <option value="Telemetria de máquinas">Telemetria de máquinas</option>
               <option value="Monitoramento de temperatura">Monitoramento de temperatura</option>
               <option value="Consultoria">Consultoria</option>
               <option value="Desenvolvimento">Desenvolvimento</option>
